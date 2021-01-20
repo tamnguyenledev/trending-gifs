@@ -22,6 +22,13 @@ const ImageContainer = styled.div<{ imageLoaded: boolean }>`
     margin: auto;
     cursor: pointer;
   }
+  i.spinner {
+    ${({ imageLoaded }) => (imageLoaded ? 'display: none' : '')};
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 `
 
 const SummarySection = styled.div`
@@ -85,6 +92,7 @@ export const Gif: React.FC<CardProps> = ({ title, url, user, onClick }) => {
     <div>
       <CardContainer>
         <ImageContainer imageLoaded={imageLoaded}>
+          <Icon className="spinner" type="spinner" spin fontSize="20px" />
           <img
             onLoad={() => {
               setImageLoaded(true)
